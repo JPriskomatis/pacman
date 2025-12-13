@@ -70,6 +70,12 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
 
+    public void TeleportToCell(Vector3Int cell)
+    {
+        targetPosition = wallsTilemap.GetCellCenterWorld(cell);
+        transform.position = targetPosition;
+    }
+
     bool IsWall(Vector3Int cell)
     {
         return wallsTilemap.HasTile(cell);

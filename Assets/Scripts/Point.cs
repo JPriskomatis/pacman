@@ -1,14 +1,16 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Point : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer image;
-    [SerializeField] private Sprite[] logos;
-
-    private void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        int randomLogo = Random.Range(0, logos.Length);
-        image.sprite = logos[randomLogo];
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

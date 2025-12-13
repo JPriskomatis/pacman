@@ -1,50 +1,30 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class SpawnPoints : MonoBehaviour
 {
     [SerializeField] private GameObject pointPrefab;
+    [SerializeField] private GameObject powerUpPrefab;
     [SerializeField] private Tilemap groundTilemap;
 
 
-
-    [SerializeField] private List<Vector3> locations = new List<Vector3>();
-
     private void Start()
     {
-        for (int x = groundTilemap.cellBounds.xMin; x< groundTilemap.cellBounds.xMax; x++)
+        // Spawn points on every tile (your existing logic)
+        for (int x = groundTilemap.cellBounds.xMin; x < groundTilemap.cellBounds.xMax; x++)
         {
             for (int y = groundTilemap.cellBounds.yMin; y < groundTilemap.cellBounds.yMax; y++)
             {
-                Vector3Int localLocation = new Vector3Int(
-                    x: x,
-                    y: y,
-                    z: 0);
+                Vector3Int cell = new Vector3Int(x, y, 0);
 
-                Vector3 location = groundTilemap.CellToWorld(localLocation);
-                if (groundTilemap.HasTile(localLocation))
-                {
-                    locations.Add(location);
-                }
+                if (!groundTilemap.HasTile(cell))
+                    continue;
+
+                Vector3 worldPos = groundTilemap.GetCellCenterWorld(cell);
+                Instantiate(pointPrefab, worldPos, Quaternion.identity);
             }
         }
 
-        InvokeRepeating(
-            methodName: "SpawnPoint",
-            time: Random.Range(1,1),
-            repeatRate: Random.Range(2, 5));
-    }
 
-    private void SpawnPoint()
-    {
-        int z = Random.Range(0, locations.Count);
-        
-        Instantiate(pointPrefab, new Vector2(
-            x: locations[z].x+.5f,
-            y: locations[z].y+.5f),
-            Quaternion.identity);
     }
-
 }
