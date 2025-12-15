@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, Iinteractable
 {
 
     [SerializeField] private EnemySO[] enemySO;
     private EnemySO currentEnemySO;
     [SerializeField] private SpriteRenderer image;
+    [SerializeField] private Sprite originalImage;
 
     public GameEvent EnemyDeath;
 
@@ -15,21 +16,27 @@ public class Enemy : MonoBehaviour
     private int animIndex;
     private Vector2 lastDirection;
 
+    private bool isAfraid = false;
+
+    public GameEvent PlayerDies;
+    public GameEvent NoLongerScared;
 
     void Start()
     {
         currentEnemySO = enemySO[Random.Range(0, enemySO.Length)];
         image.sprite = currentEnemySO.right[0];
+        originalImage = image.sprite;
     }
 
     public void SetDirection(Vector2 dir, bool isMoving)
     {
-        if (dir == Vector2.zero)
+        if (dir == Vector2.zero && !isAfraid)
             return;
 
         lastDirection = dir;
 
-        if (!isMoving)
+        // always animate if afraid
+        if (!isMoving && !isAfraid)
         {
             animIndex = 0;
             image.sprite = GetSprite(dir, animIndex);
@@ -41,13 +48,20 @@ public class Enemy : MonoBehaviour
         if (animTimer >= animSpeed)
         {
             animTimer = 0f;
-            animIndex = (animIndex + 1) % 2;
+            animIndex = (animIndex + 1) % 2; // will work for afraid too
             image.sprite = GetSprite(dir, animIndex);
         }
     }
 
+
     Sprite GetSprite(Vector2 dir, int index)
     {
+        if (isAfraid)
+        {
+            // afraid is direction-independent, just flip between [0] and [1]
+            return currentEnemySO.afraid[index % currentEnemySO.afraid.Length];
+        }
+
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
             return dir.x > 0 ? currentEnemySO.right[index] : currentEnemySO.left[index];
         else
@@ -86,5 +100,43 @@ public class Enemy : MonoBehaviour
         EnemyDeath.Raise();
         Debug.Log("Died");
         Destroy(this.gameObject);
+    }
+
+    public void GetScared()
+    {
+        StartCoroutine(ScaredGhost());
+    }
+
+    IEnumerator ScaredGhost()
+    {
+        isAfraid = true;
+        animIndex = 0;
+        float timer = 0f;
+        float duration = 5f;
+        while (timer < duration)
+        {
+            // animate afraid frames every Update via SetDirection
+            SetDirection(lastDirection, true);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        isAfraid = false;
+        animIndex = 0;
+        image.sprite = GetSprite(lastDirection, animIndex);
+        NoLongerScared.Raise();
+    }
+
+    public void Interact()
+    {
+        if (!isAfraid)
+        {
+            //player dies;
+            PlayerDies.Raise();
+        }
+        else
+        {
+            Death();
+        }
     }
 }

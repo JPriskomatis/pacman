@@ -8,4 +8,6 @@ public class EnemySO : ScriptableObject
     public Sprite[] down;
     public Sprite[] left;
     public Sprite[] right;
+
+    public Sprite[] afraid;
 }

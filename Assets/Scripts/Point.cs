@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Point : MonoBehaviour
+public class Point : MonoBehaviour, Iinteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameEvent CollectPoint;
+    public void Interact()
     {
-        
+        Debug.Log("+1");
+        CollectPoint.Raise();
+        Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

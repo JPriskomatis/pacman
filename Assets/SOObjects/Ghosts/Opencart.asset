@@ -24,3 +24,6 @@ MonoBehaviour:
   right:
   - {fileID: -6909167260311851693, guid: 366749e6b71aeb04aab92e636a10d3f2, type: 3}
   - {fileID: 8171221471519308795, guid: 62eb8c88bd19048478628ddd23cadf88, type: 3}
+  afraid:
+  - {fileID: 8405985795958728959, guid: bea1f1fb50014c542a338ebed91e1346, type: 3}
+  - {fileID: 7408656860028139720, guid: 51d59d58481b63145ad75df6409f3b61, type: 3}

@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     private Enemy enemy;
 
     public float moveSpeed = 3f;
+    private float originalMoveSpeed;
     public Tilemap wallsTilemap;
 
     private Vector3 targetPosition;
@@ -20,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        originalMoveSpeed = moveSpeed;
         enemy = GetComponent<Enemy>();
         wallsTilemap = GameObject.FindGameObjectWithTag("WallGrid").GetComponent<Tilemap>();
 
@@ -115,6 +117,16 @@ public class EnemyMovement : MonoBehaviour
         canMove = false;
         enemy.SetDirection(currentDirection, false);
 
+    }
+
+    public void SetSpeed(int speed)
+    {
+        moveSpeed = speed;
+    }
+
+    public void ResetSpeed()
+    {
+        moveSpeed = originalMoveSpeed;
     }
 
 

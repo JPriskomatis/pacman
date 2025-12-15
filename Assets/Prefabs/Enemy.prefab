@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7004952913667402396}
   - component: {fileID: 2036709943637298445}
   - component: {fileID: 687389824015762277}
+  - component: {fileID: -1594817456391264873}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -200,5 +201,65 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2739c45a5f201f24abab9b485b0f4f57, type: 2}
   - {fileID: 11400000, guid: 4ef3438c6fc4c5f49aef74dbeacebeb9, type: 2}
   image: {fileID: 69501945028268575}
+  originalImage: {fileID: 0}
   EnemyDeath: {fileID: 11400000, guid: 375a9cde6b8726d40ba2119ca5cab062, type: 2}
   animSpeed: 0.2
+  PlayerDies: {fileID: 11400000, guid: 63a24d7084fc47e47bbdd07b7740a19e, type: 2}
+  NoLongerScared: {fileID: 11400000, guid: fd4630f26d0825145b996e0c6c32e9f6, type: 2}
+--- !u!114 &-1594817456391264873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208353090520650859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ed7eb8b397c9145a78f4e71acc1131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  EventResponses:
+  - Event: {fileID: 11400000, guid: e9a6358ffd1affe47ab06aefc7132890, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 687389824015762277}
+          m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+          m_MethodName: GetScared
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2036709943637298445}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: SetSpeed
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Event: {fileID: 11400000, guid: fd4630f26d0825145b996e0c6c32e9f6, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2036709943637298445}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: ResetSpeed
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

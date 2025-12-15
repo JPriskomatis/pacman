@@ -113,4 +113,9 @@ public class PlayerMovement : MonoBehaviour
     {
         return wallsTilemap.HasTile(cell);
     }
+
+    public void PlayerDeath()
+    {
+        Debug.Log("I died:(");
+    }
 }

@@ -145,3 +145,4 @@ MonoBehaviour:
   - {fileID: 3295483416912216581, guid: 60152c288c920b24ba7f77f1fb6a7adb, type: 3}
   - {fileID: -3779406552673583644, guid: 5051fee537c434e4ebb49749e1e99eb1, type: 3}
   - {fileID: -1150697672189519224, guid: 4b1afb20580f7234f8414e3dafbb7b95, type: 3}
+  PowerUpEvent: {fileID: 11400000, guid: e9a6358ffd1affe47ab06aefc7132890, type: 2}
