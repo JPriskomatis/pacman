@@ -6,6 +6,9 @@ public class PowerUp : MonoBehaviour, Iinteractable
     [SerializeField] private SpriteRenderer image;
     [SerializeField] private Sprite[] logos;
 
+    private static int logoIndex;
+
+
     public GameEvent PowerUpEvent;
 
     public void Interact()
@@ -19,5 +22,15 @@ public class PowerUp : MonoBehaviour, Iinteractable
     {
         int randomLogo = Random.Range(0, logos.Length);
         image.sprite = logos[randomLogo];
+    }
+
+    private void GetPowerUp()
+    {
+        image.sprite = logos[logoIndex];
+        logoIndex++;
+        if (logoIndex >= logos.Length)
+        {
+            logoIndex = 0;
+        }
     }
 }

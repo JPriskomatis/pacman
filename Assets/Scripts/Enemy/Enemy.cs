@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour, Iinteractable
 {
 
     [SerializeField] private EnemySO[] enemySO;
+    private static int enemyIndex;
     private EnemySO currentEnemySO;
     [SerializeField] private SpriteRenderer image;
     [SerializeField] private Sprite originalImage;
@@ -23,9 +24,19 @@ public class Enemy : MonoBehaviour, Iinteractable
 
     void Start()
     {
-        currentEnemySO = enemySO[Random.Range(0, enemySO.Length)];
+        EnemyLogo();
         image.sprite = currentEnemySO.right[0];
         originalImage = image.sprite;
+    }
+
+    private void EnemyLogo()
+    {
+        currentEnemySO = enemySO[enemyIndex];
+        enemyIndex++;
+        if(enemyIndex >= enemySO.Length)
+        {
+            enemyIndex = 0;
+        }
     }
 
     public void SetDirection(Vector2 dir, bool isMoving)
