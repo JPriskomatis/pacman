@@ -5,15 +5,14 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private Enemy enemy;
+
     public float moveSpeed = 3f;
     public Tilemap wallsTilemap;
 
     private Vector3 targetPosition;
     private Vector2 currentDirection;
 
-    [SerializeField] private SpriteRenderer image;
-    [SerializeField] private Sprite[] logos;
-    [SerializeField] private SpriteRenderer spriteRender;
 
     private bool canMove = true;
 
@@ -21,10 +20,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        enemy = GetComponent<Enemy>();
         wallsTilemap = GameObject.FindGameObjectWithTag("WallGrid").GetComponent<Tilemap>();
 
-        int randomLogo = Random.Range(0, logos.Length);
-        image.sprite = logos[randomLogo];
+        
 
         targetPosition = wallsTilemap.GetCellCenterWorld(wallsTilemap.WorldToCell(transform.position));
         transform.position = targetPosition;
@@ -37,6 +36,8 @@ public class EnemyMovement : MonoBehaviour
         if (canMove)
         {
             Move();
+            enemy.SetDirection(currentDirection, (Vector3)transform.position != targetPosition);
+
         }
 
     }
@@ -76,6 +77,8 @@ public class EnemyMovement : MonoBehaviour
 
             // Pick new direction randomly from remaining options
             currentDirection = validDirections[Random.Range(0, validDirections.Count)];
+            //enemy.SetDirection(currentDirection, true);
+
 
             // Set next target position
             Vector3Int targetCell = wallsTilemap.WorldToCell(transform.position + (Vector3)currentDirection);
@@ -107,38 +110,13 @@ public class EnemyMovement : MonoBehaviour
         return dirs[Random.Range(0, dirs.Count)];
     }
 
-    public void Death()
+    public void StopMovement()
     {
         canMove = false;
-        //Flicker effect
-        StartCoroutine(FlickerEffect());
+        enemy.SetDirection(currentDirection, false);
 
-        
     }
 
-    IEnumerator FlickerEffect()
-    {
-        float elapsed = 0f;
-        float flickerInterval = 0.1f; // time between flickers
-        Color originalColor = spriteRender.color;
-
-        while (elapsed < 1.5f)
-        {
-            // Toggle alpha between 0 and 1
-            float newAlpha = spriteRender.color.a > 0.5f ? 0f : 1f;
-            spriteRender.color = new Color(originalColor.r, originalColor.g, originalColor.b, newAlpha);
-
-            elapsed += flickerInterval;
-            yield return new WaitForSeconds(flickerInterval);
-        }
-
-        // Ensure sprite ends at full opacity
-        spriteRender.color = originalColor;
-
-        EnemyDeath.Raise();
-        Debug.Log("Died");
-        Destroy(this.gameObject);
-    }
 
 }
 

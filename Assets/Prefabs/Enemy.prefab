@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8712333812692610359}
   - component: {fileID: 7004952913667402396}
   - component: {fileID: 2036709943637298445}
+  - component: {fileID: 687389824015762277}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -180,10 +181,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   wallsTilemap: {fileID: 0}
-  image: {fileID: 69501945028268575}
-  logos:
-  - {fileID: 6989642852348889387, guid: eb0ff3ffef1d0434b891e31aa45d5498, type: 3}
-  - {fileID: -1247538377893483369, guid: b7b2257c5edecf6448ebc2ce12808514, type: 3}
-  - {fileID: 7094538223336271109, guid: 6ff36eb6a0a87dd4c9db0fe657c60f89, type: 3}
-  spriteRender: {fileID: 69501945028268575}
   EnemyDeath: {fileID: 11400000, guid: 375a9cde6b8726d40ba2119ca5cab062, type: 2}
+--- !u!114 &687389824015762277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208353090520650859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c58cac49e4db74296b634596e5e037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  enemySO:
+  - {fileID: 11400000, guid: 3beaaae9cd2303240a1e908f16331d84, type: 2}
+  - {fileID: 11400000, guid: 2d3c844817aa6a446b5fdc81ee5dd682, type: 2}
+  - {fileID: 11400000, guid: 2739c45a5f201f24abab9b485b0f4f57, type: 2}
+  - {fileID: 11400000, guid: 4ef3438c6fc4c5f49aef74dbeacebeb9, type: 2}
+  image: {fileID: 69501945028268575}
+  EnemyDeath: {fileID: 11400000, guid: 375a9cde6b8726d40ba2119ca5cab062, type: 2}
+  animSpeed: 0.2

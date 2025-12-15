@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c7ea1c0e439db4385182d0474630c9, type: 3}
+  m_Name: Opencart
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySO
+  up:
+  - {fileID: -6909167260311851693, guid: 1b988d2dcdcbb1e40b0de1fa9e52bec3, type: 3}
+  - {fileID: 8171221471519308795, guid: 93e45cd696c9a7146a048e7e0f6afe20, type: 3}
+  down:
+  - {fileID: -6909167260311851693, guid: 7ad923c71198bda47894cd63b918db25, type: 3}
+  - {fileID: 8171221471519308795, guid: af9c5da9508b91f40b18fe4e71988315, type: 3}
+  left:
+  - {fileID: -6909167260311851693, guid: 09949fe51bd0c834d896a8e2aa329e9c, type: 3}
+  - {fileID: 8171221471519308795, guid: f4182a4df3b072c4db89d68e5ed49443, type: 3}
+  right:
+  - {fileID: -6909167260311851693, guid: 366749e6b71aeb04aab92e636a10d3f2, type: 3}
+  - {fileID: 8171221471519308795, guid: 62eb8c88bd19048478628ddd23cadf88, type: 3}

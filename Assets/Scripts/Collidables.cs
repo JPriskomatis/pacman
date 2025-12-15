@@ -21,7 +21,7 @@ public class Collidables : MonoBehaviour
 
     private void DestroyEnemy(Collider2D enemy)
     {
-        enemy.GetComponent<EnemyMovement>().Death();
+        enemy.GetComponent<Enemy>().Death();
     }
 
     private void CollectPowerUp(Collider2D powerUp)
