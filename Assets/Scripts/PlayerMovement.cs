@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 input;                // Current movement direction
     private Vector2 nextInput;            // Buffered input for smooth turning
 
+    [SerializeField] private Animator anim;
+    [SerializeField] private SpriteRenderer sprite;
     private void Start()
     {
         // Snap player to the center of the current tile
@@ -30,11 +32,18 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 dir = new Vector2(horizontal, vertical);
 
-        // Allow only one direction at a time
+        
         if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+        {
             dir.y = 0;
+        }
+
         else
+        {
             dir.x = 0;
+
+        }
+            
 
         if (dir != Vector2.zero)
             nextInput = dir;
@@ -42,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        if ((Vector3)transform.position == targetPosition)
+        if ((transform.position - targetPosition).sqrMagnitude < 0.0001f)
         {
             // Try buffered input first
             Vector3Int nextCell = wallsTilemap.WorldToCell(transform.position + (Vector3)nextInput);
@@ -55,7 +64,30 @@ public class PlayerMovement : MonoBehaviour
                 // If blocked, try current input
                 nextCell = wallsTilemap.WorldToCell(transform.position + (Vector3)input);
                 if (IsWall(nextCell))
+                {
                     input = Vector2.zero;
+                    anim.SetTrigger("Stop");
+                }
+
+            }
+
+            if (input.x != 0)
+            {
+                // Horizontal movement
+                sprite.flipX = input.x < 0;
+                transform.rotation = Quaternion.identity; // reset Z rotation
+            }
+            else if (input.y > 0)
+            {
+                // Moving up
+                sprite.flipX = false;
+                transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+            else if (input.y < 0)
+            {
+                // Moving down
+                sprite.flipX = false;
+                transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             }
 
             // Set target position to the **center of the next tile**
@@ -63,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Vector3Int targetCell = wallsTilemap.WorldToCell(transform.position + (Vector3)input);
                 targetPosition = wallsTilemap.GetCellCenterWorld(targetCell);
+                anim.SetTrigger("Move");
             }
         }
 
