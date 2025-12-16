@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;          // Units per second
+    private float originalSpeed;
     public Tilemap wallsTilemap;          // Reference to your Walls Tilemap
 
     private Vector3 targetPosition;       // World position to move toward
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         // Snap player to the center of the current tile
         targetPosition = wallsTilemap.GetCellCenterWorld(wallsTilemap.WorldToCell(transform.position));
         transform.position = targetPosition;
+        originalSpeed = moveSpeed;
     }
 
     private void Update()
@@ -144,5 +146,14 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("Death");
     }
 
+    public void SpeedUpPlayer(int x)
+    {
+        moveSpeed = x;
+    }
+
+    public void ResetSpeedPlayer()
+    {
+        moveSpeed = originalSpeed;
+    }
 
 }

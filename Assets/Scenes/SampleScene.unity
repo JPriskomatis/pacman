@@ -334,6 +334,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8810687356462333744, guid: 93f8324cba91146428b648520f1fa993, type: 3}
   m_PrefabInstance: {fileID: 487116059}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &207671887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+  m_PrefabInstance: {fileID: 739688223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &230198960
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,9 +457,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1684637344}
     m_Modifications:
+    - target: {fileID: 4084113649962122081, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8403481564300429665, guid: 72a2ddbb301339242a925bdfa7feb3ed, type: 3}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_Name
-      value: PowerUp (1)
+      value: NodePowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_IsActive
@@ -528,10 +537,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7666776101586036122, guid: 93f8324cba91146428b648520f1fa993, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1940935907}
   m_SourcePrefab: {fileID: 100100000, guid: 93f8324cba91146428b648520f1fa993, type: 3}
 --- !u!1 &416210606
 GameObject:
@@ -626,10 +639,10 @@ PrefabInstance:
     - target: {fileID: 4084113649962122081, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1150697672189519224, guid: 4b1afb20580f7234f8414e3dafbb7b95, type: 3}
+      objectReference: {fileID: 3295483416912216581, guid: 7ee705a49cfcc2d4582979d82f3c729b, type: 3}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_Name
-      value: PowerUp (2)
+      value: AstroPowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_IsActive
@@ -703,10 +716,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7666776101586036122, guid: 93f8324cba91146428b648520f1fa993, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1718278921}
   m_SourcePrefab: {fileID: 100100000, guid: 93f8324cba91146428b648520f1fa993, type: 3}
 --- !u!1 &502521376
 GameObject:
@@ -8990,9 +9007,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1684637344}
     m_Modifications:
+    - target: {fileID: 4084113649962122081, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3779406552673583644, guid: 5051fee537c434e4ebb49749e1e99eb1, type: 3}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_Name
-      value: PowerUp
+      value: ReactPowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_IsActive
@@ -9066,16 +9087,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7666776101586036122, guid: 93f8324cba91146428b648520f1fa993, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 912321709}
   m_SourcePrefab: {fileID: 100100000, guid: 93f8324cba91146428b648520f1fa993, type: 3}
 --- !u!4 &912321704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8810687356462333744, guid: 93f8324cba91146428b648520f1fa993, type: 3}
   m_PrefabInstance: {fileID: 739688223}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &912321709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207671887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e3099032dbbab47a7b82c67178231f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReactPower
+  abilityTimer: 0
 --- !u!1001 &951274270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9084,9 +9122,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1684637344}
     m_Modifications:
+    - target: {fileID: 4084113649962122081, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1150697672189519224, guid: 4b1afb20580f7234f8414e3dafbb7b95, type: 3}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_Name
-      value: PowerUp (5)
+      value: ShopifyPowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_IsActive
@@ -9160,16 +9202,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7666776101586036122, guid: 93f8324cba91146428b648520f1fa993, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1644858661}
   m_SourcePrefab: {fileID: 100100000, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+--- !u!1 &984955828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+  m_PrefabInstance: {fileID: 249560673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &996860838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+  m_PrefabInstance: {fileID: 1134148664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1055374970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8810687356462333744, guid: 93f8324cba91146428b648520f1fa993, type: 3}
   m_PrefabInstance: {fileID: 1134148664}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1055374975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996860838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c148f4189a1b6d4196cd66b7e6af6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SveltePower
+  abilityTimer: 5
+  SpeedUpPlayer: {fileID: 11400000, guid: e30e3effa33485d46af5dfb735c47cc0, type: 2}
+  ResetPlayerSpeed: {fileID: 11400000, guid: f685dc2f34c1bf645867977a218a87e6, type: 2}
 --- !u!1 &1084560204
 GameObject:
   m_ObjectHideFlags: 0
@@ -9276,9 +9347,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1684637344}
     m_Modifications:
+    - target: {fileID: 4084113649962122081, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4045092580061463422, guid: f5d032583b0cd404dbc5651b13c1bf81, type: 3}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_Name
-      value: PowerUp (3)
+      value: SveltePowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
       propertyPath: m_IsActive
@@ -9352,10 +9427,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7666776101586036122, guid: 93f8324cba91146428b648520f1fa993, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1055374975}
   m_SourcePrefab: {fileID: 100100000, guid: 93f8324cba91146428b648520f1fa993, type: 3}
 --- !u!1 &1502642752
 GameObject:
@@ -18075,6 +18154,24 @@ Transform:
   - {fileID: 502521377}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1644858656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+  m_PrefabInstance: {fileID: 951274270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1644858661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644858656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e58e22fce9f61b4c90f34b6fff8b519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopifyPower
+  abilityTimer: 0
 --- !u!1 &1684637343
 GameObject:
   m_ObjectHideFlags: 0
@@ -18111,6 +18208,24 @@ Transform:
   - {fileID: 642546479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1718278916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6907238283270467259, guid: 93f8324cba91146428b648520f1fa993, type: 3}
+  m_PrefabInstance: {fileID: 487116059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1718278921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718278916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e74c7e4a1454034aa3adf8bc5da3541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AstroPower
+  abilityTimer: 0
 --- !u!1 &1847223787
 GameObject:
   m_ObjectHideFlags: 0
@@ -18214,6 +18329,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8810687356462333744, guid: 93f8324cba91146428b648520f1fa993, type: 3}
   m_PrefabInstance: {fileID: 249560673}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1940935907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984955828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c8be58685eeea4fa5cc98948b517c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NodePower
+  abilityTimer: 0
+  TransulentPlayer: {fileID: 0}
 --- !u!1 &2047667820
 GameObject:
   m_ObjectHideFlags: 0
@@ -18330,7 +18459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.33, y: 1.51}
+  m_AnchoredPosition: {x: 17.26, y: 1.51}
   m_SizeDelta: {x: 0.969, y: 0.984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &2047667824
@@ -18443,6 +18572,38 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Event: {fileID: 11400000, guid: e30e3effa33485d46af5dfb735c47cc0, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2047667821}
+          m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+          m_MethodName: SpeedUpPlayer
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Event: {fileID: 11400000, guid: f685dc2f34c1bf645867977a218a87e6, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2047667821}
+          m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+          m_MethodName: ResetSpeedPlayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
