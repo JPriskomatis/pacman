@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,25 +10,23 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        doorTilemap.SetColor(cell, Color.red);
+        //doorTilemap.SetColor(cell, Color.red);
 
         DisableDoor();
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            EnableDoor();
-        }
+  
+        
     }
 
     public void DisableDoor()
     {
+        StopAllCoroutines();
         doorTilemap.SetTile(cell, null);
+        StartCoroutine(EnableDoor());
     }
 
-    public void EnableDoor()
+    public IEnumerator EnableDoor()
     {
+        yield return new WaitForSeconds(5f);
         doorTilemap.SetTile(cell, tile);
     }
 

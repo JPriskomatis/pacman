@@ -184,6 +184,7 @@ MonoBehaviour:
   moveSpeed: 3
   wallsTilemap: {fileID: 0}
   EnemyDeath: {fileID: 11400000, guid: 375a9cde6b8726d40ba2119ca5cab062, type: 2}
+  player: {fileID: 0}
 --- !u!114 &687389824015762277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +208,7 @@ MonoBehaviour:
   animSpeed: 0.2
   PlayerDies: {fileID: 11400000, guid: 63a24d7084fc47e47bbdd07b7740a19e, type: 2}
   NoLongerScared: {fileID: 11400000, guid: fd4630f26d0825145b996e0c6c32e9f6, type: 2}
+  StartEnemySpawnTimer: {fileID: 11400000, guid: 013c5b43bf6652149814f824c27115f3, type: 2}
 --- !u!114 &-1594817456391264873
 MonoBehaviour:
   m_ObjectHideFlags: 0

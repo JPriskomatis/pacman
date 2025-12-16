@@ -19,8 +19,13 @@ public class EnemyMovement : MonoBehaviour
 
     public GameEvent EnemyDeath;
 
+    public Transform player;
+
+    float chaseChance = 0.8f;
+
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         originalMoveSpeed = moveSpeed;
         enemy = GetComponent<Enemy>();
         wallsTilemap = GameObject.FindGameObjectWithTag("WallGrid").GetComponent<Tilemap>();
@@ -52,42 +57,52 @@ public class EnemyMovement : MonoBehaviour
         //when we reach target tile center;
         if ((Vector3)transform.position == targetPosition)
         {
-            
             List<Vector2> validDirections = GetValidDirections();
 
             if (validDirections.Count == 0)
             {
-                
                 currentDirection = Vector2.zero;
                 return;
             }
 
-            // If we're in a corridor (2 valid directions and one is reverse), continue forward mostly
-            //if (validDirections.Count == 2 && validDirections.Contains(-currentDirection))
-            //{
-            //    // 80% chance to continue forward, 20% chance to turn
-            //    if (Random.value < 0.8f)
-            //    {
-            //        validDirections.Remove(-currentDirection);
-            //    }
-            //}
-            //else
             if (validDirections.Count > 1)
             {
-                // Avoid going backward if possible
                 validDirections.Remove(-currentDirection);
             }
 
-            // Pick new direction randomly from remaining options
-            currentDirection = validDirections[Random.Range(0, validDirections.Count)];
-            //enemy.SetDirection(currentDirection, true);
+            
+            if (Random.value < chaseChance)
+                currentDirection = GetChaseDirection(validDirections);
+            else
+                currentDirection = validDirections[Random.Range(0, validDirections.Count)];
 
-
-            // Set next target position
             Vector3Int targetCell = wallsTilemap.WorldToCell(transform.position + (Vector3)currentDirection);
             targetPosition = wallsTilemap.GetCellCenterWorld(targetCell);
         }
+
     }
+
+    Vector2 GetChaseDirection(List<Vector2> validDirections)
+    {
+        Vector3 playerPos = player.position;
+        Vector2 bestDir = validDirections[0];
+        float bestDistance = float.MaxValue;
+
+        foreach (Vector2 dir in validDirections)
+        {
+            Vector3 nextPos = transform.position + (Vector3)dir;
+            float dist = Vector3.Distance(nextPos, playerPos);
+
+            if (dist < bestDistance)
+            {
+                bestDistance = dist;
+                bestDir = dir;
+            }
+        }
+
+        return bestDir;
+    }
+
 
     List<Vector2> GetValidDirections()
     {

@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour, Iinteractable
     public GameEvent NoLongerScared;
 
     private bool passThroughPlayer;
+
+    public GameEvent StartEnemySpawnTimer;
     void Start()
     {
         EnemyLogo();
@@ -110,6 +112,7 @@ public class Enemy : MonoBehaviour, Iinteractable
         // Ensure sprite ends at full opacity
         image.color = originalColor;
 
+        StartEnemySpawnTimer.Raise();
         EnemyDeath.Raise();
         Debug.Log("Died");
         Destroy(this.gameObject);

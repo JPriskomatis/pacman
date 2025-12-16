@@ -10,7 +10,9 @@ public abstract class PowerUp : MonoBehaviour, Iinteractable
     //private static int logoIndex;
 
 
-    //GameEvent PowerUpEvent;
+    public GameEvent PowerUpEvent;
+
+    
 
     [SerializeField] protected float abilityTimer;
 
@@ -18,6 +20,7 @@ public abstract class PowerUp : MonoBehaviour, Iinteractable
     {
         //Destroy(gameObject);
         Ability();
+        PowerUpEvent.Raise();
     }
 
     //private void Start()

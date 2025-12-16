@@ -3,9 +3,10 @@ using UnityEngine;
 public class Point : MonoBehaviour, Iinteractable
 {
     public GameEvent CollectPoint;
+    public GameEvent IncreaseTitle;
     public void Interact()
     {
-        Debug.Log("+1");
+        
         CollectPoint.Raise();
         Destroy(gameObject);
     }

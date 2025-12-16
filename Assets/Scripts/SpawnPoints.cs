@@ -7,7 +7,7 @@ public class SpawnPoints : MonoBehaviour
     [SerializeField] private GameObject powerUpPrefab;
     [SerializeField] private Tilemap groundTilemap;
 
-
+    int xx = 0;
     private void Start()
     {
         // Spawn points on every tile (your existing logic)
@@ -22,6 +22,7 @@ public class SpawnPoints : MonoBehaviour
 
                 Vector3 worldPos = groundTilemap.GetCellCenterWorld(cell);
                 Instantiate(pointPrefab, worldPos, Quaternion.identity);
+                Debug.Log(xx++);
             }
         }
 

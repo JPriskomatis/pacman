@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviour
 
     Vector3 worldPos;
 
+    public GameEvent OpenDoor;
+
 
     private void Start()
     {
@@ -47,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(0, 10f));
         Instantiate(enemy, worldPos, Quaternion.identity);
+        OpenDoor.Raise();
     }
 
 }
