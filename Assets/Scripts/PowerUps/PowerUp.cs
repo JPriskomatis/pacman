@@ -19,8 +19,10 @@ public abstract class PowerUp : MonoBehaviour, Iinteractable
     public void Interact()
     {
         //Destroy(gameObject);
-        Ability();
+        
+        OnPickUp();
         PowerUpEvent.Raise();
+        Ability();
     }
 
     //private void Start()

@@ -20,10 +20,13 @@ public class PlayerMovement : MonoBehaviour
 
     public GameEvent StopGhostMovenet;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private SpriteRenderer runningShoes;
 
+    Vector3 pos;
 
     private void Start()
     {
+        pos = runningShoes.gameObject.transform.localPosition;
         // Snap player to the center of the current tile
         targetPosition = wallsTilemap.GetCellCenterWorld(wallsTilemap.WorldToCell(transform.position));
         transform.position = targetPosition;
@@ -88,20 +91,36 @@ public class PlayerMovement : MonoBehaviour
 
             if (input.x != 0)
             {
-                // Horizontal movement
-                sprite.flipX = input.x < 0;
-                transform.rotation = Quaternion.identity; // reset Z rotation
+                Vector3 pos = runningShoes.transform.localPosition;
+
+                float xOffset = 0.324f;
+
+                // Flip sprites
+                bool facingLeft = input.x < 0;
+                sprite.flipX = facingLeft;
+                runningShoes.flipX = facingLeft;
+
+                // Put the shoes on the opposite side of the flip
+                pos.x = facingLeft ? xOffset : -xOffset; // notice the swapped signs
+                runningShoes.transform.localPosition = pos;
+
+                transform.rotation = Quaternion.identity;
             }
+
             else if (input.y > 0)
             {
+                pos.x = -0.235f;
+                runningShoes.gameObject.transform.localPosition = pos;
                 // Moving up
                 sprite.flipX = false;
+                runningShoes.flipX = false;
                 transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             }
             else if (input.y < 0)
             {
                 // Moving down
                 sprite.flipX = false;
+                runningShoes.flipX = false;
                 transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             }
 
