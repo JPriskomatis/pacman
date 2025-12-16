@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour, Iinteractable
 
         lastDirection = dir;
 
-        // always animate if afraid
+        
         if (!isMoving && !isAfraid)
         {
             animIndex = 0;
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour, Iinteractable
         if (animTimer >= animSpeed)
         {
             animTimer = 0f;
-            animIndex = (animIndex + 1) % 2; // will work for afraid too
+            animIndex = (animIndex + 1) % 2; 
             image.sprite = GetSprite(dir, animIndex);
         }
     }
@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour, Iinteractable
     {
         if (isAfraid)
         {
-            // afraid is direction-independent, just flip between [0] and [1]
+            
             return currentEnemySO.afraid[index % currentEnemySO.afraid.Length];
         }
 
@@ -83,6 +83,7 @@ public class Enemy : MonoBehaviour, Iinteractable
 
     public void Death()
     {
+        GetComponent<EnemyMovement>().StopMovement();
         //Flicker effect
         StartCoroutine(FlickerEffect());
 

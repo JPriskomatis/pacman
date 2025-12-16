@@ -46,32 +46,33 @@ public class EnemyMovement : MonoBehaviour
 
     void Move()
     {
-        // Move towards the target position
+        
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-        // When we reach target tile center
+        //when we reach target tile center;
         if ((Vector3)transform.position == targetPosition)
         {
-            // Get all valid directions
+            
             List<Vector2> validDirections = GetValidDirections();
 
             if (validDirections.Count == 0)
             {
-                // No valid moves? Stay put
+                
                 currentDirection = Vector2.zero;
                 return;
             }
 
             // If we're in a corridor (2 valid directions and one is reverse), continue forward mostly
-            if (validDirections.Count == 2 && validDirections.Contains(-currentDirection))
-            {
-                // 80% chance to continue forward, 20% chance to turn
-                if (Random.value < 0.8f)
-                {
-                    validDirections.Remove(-currentDirection);
-                }
-            }
-            else if (validDirections.Count > 1)
+            //if (validDirections.Count == 2 && validDirections.Contains(-currentDirection))
+            //{
+            //    // 80% chance to continue forward, 20% chance to turn
+            //    if (Random.value < 0.8f)
+            //    {
+            //        validDirections.Remove(-currentDirection);
+            //    }
+            //}
+            //else
+            if (validDirections.Count > 1)
             {
                 // Avoid going backward if possible
                 validDirections.Remove(-currentDirection);
