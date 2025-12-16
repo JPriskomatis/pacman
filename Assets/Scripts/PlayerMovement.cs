@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
@@ -139,35 +140,16 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-    public void BecomeTranslucent()
-    {
-        Debug.Log("translucent");
-        sprite.color = new Color(
-            1f,
-            1f,
-            1f,
-            0.25f
-        );
-
-
-    }
-
-    public void BecomeUnTranslucent()
-    {
-        Debug.Log("Non translucent");
-        sprite.color = new Color(
-            sprite.color.r,
-            sprite.color.g,
-            sprite.color.b,
-            1f
-        );
-    }
     IEnumerator PlayerDeathAnimation()
     {
         yield return new WaitForSeconds(1f);
 
         //Play Death Animation
         anim.SetTrigger("Death");
+
+        yield return new WaitForSeconds(3f);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 
     public void SpeedUpPlayer(int x)
