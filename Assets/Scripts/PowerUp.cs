@@ -15,13 +15,18 @@ public class PowerUp : MonoBehaviour, Iinteractable
     {
         Destroy(gameObject);
         PowerUpEvent.Raise();
-
     }
 
     private void Start()
     {
-        int randomLogo = Random.Range(0, logos.Length);
-        image.sprite = logos[randomLogo];
+
+        
+        image.sprite = logos[logoIndex];
+        logoIndex++;
+        if(logoIndex > logos.Length)
+        {
+            logoIndex = 0;
+        }
     }
 
     private void GetPowerUp()

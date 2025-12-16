@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5051fee537c434e4ebb49749e1e99eb1
+guid: 650b2d4f918c9d74abcd5cc011045c17
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3779406552673583644
-    second: react_0
+      213: -929487181498739063
+    second: death-4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -77,7 +77,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: react_0
+      name: death-4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 238
-        height: 212
+        width: 1013
+        height: 1013
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4ed7b16b3c9dc8bc0800000000000000
-      internalID: -3779406552673583644
+      spriteID: 9861d73455cc913f0800000000000000
+      internalID: -929487181498739063
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e5382ce8217569d41b4f1980da984a89
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      react_0: -3779406552673583644
+      death-4_0: -929487181498739063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

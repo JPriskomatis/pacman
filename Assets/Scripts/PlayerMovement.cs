@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,7 +11,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 input;                // Current movement direction
     private Vector2 nextInput;            // Buffered input for smooth turning
 
+    private bool canMove = true;
+
     [SerializeField] private Animator anim;
+
+
+    public GameEvent StopGhostMovenet;
     [SerializeField] private SpriteRenderer sprite;
     private void Start()
     {
@@ -21,8 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        HandleInput();
-        Move();
+        if (canMove)
+        {
+            HandleInput();
+            Move();
+        }
+
     }
 
     void HandleInput()
@@ -117,5 +127,22 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerDeath()
     {
         Debug.Log("I died:(");
+
+        //Freeze Ghosts
+        StopGhostMovenet.Raise();
+        //Freeze Players
+        canMove = false;
+
+        StartCoroutine(PlayerDeathAnimation());
     }
+
+    IEnumerator PlayerDeathAnimation()
+    {
+        yield return new WaitForSeconds(1f);
+
+        //Play Death Animation
+        anim.SetTrigger("Death");
+    }
+
+
 }
