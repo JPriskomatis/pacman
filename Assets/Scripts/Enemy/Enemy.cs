@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour, Iinteractable
     public GameEvent PlayerDies;
     public GameEvent NoLongerScared;
 
+    private bool passThroughPlayer;
     void Start()
     {
         EnemyLogo();
@@ -139,16 +140,25 @@ public class Enemy : MonoBehaviour, Iinteractable
         NoLongerScared.Raise();
     }
 
+    public void AllowPassthrough(bool allow)
+    {
+        passThroughPlayer = allow;
+    }
+
     public void Interact()
     {
-        if (!isAfraid)
+        if (!isAfraid && !passThroughPlayer)
         {
             //player dies;
             PlayerDies.Raise();
         }
-        else
+        else if(isAfraid)
         {
             Death();
+        }
+        else if (passThroughPlayer)
+        {
+            Debug.Log("Passing through");
         }
     }
 }

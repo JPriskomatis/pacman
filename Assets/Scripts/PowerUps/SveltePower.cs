@@ -20,6 +20,6 @@ public class SveltePower : PowerUp
         yield return new WaitForSeconds(abilityTimer);
         Debug.Log("Disable ability");
         ResetPlayerSpeed.Raise();
-        Destroy(gameObject);
+        
     }
 }

@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameEvent StopGhostMovenet;
     [SerializeField] private SpriteRenderer sprite;
+
+
     private void Start()
     {
         // Snap player to the center of the current tile
@@ -128,16 +130,38 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerDeath()
     {
-        Debug.Log("I died:(");
-
         //Freeze Ghosts
         StopGhostMovenet.Raise();
         //Freeze Players
         canMove = false;
 
         StartCoroutine(PlayerDeathAnimation());
+
+
+    }
+    public void BecomeTranslucent()
+    {
+        Debug.Log("translucent");
+        sprite.color = new Color(
+            1f,
+            1f,
+            1f,
+            0.25f
+        );
+
+
     }
 
+    public void BecomeUnTranslucent()
+    {
+        Debug.Log("Non translucent");
+        sprite.color = new Color(
+            sprite.color.r,
+            sprite.color.g,
+            sprite.color.b,
+            1f
+        );
+    }
     IEnumerator PlayerDeathAnimation()
     {
         yield return new WaitForSeconds(1f);

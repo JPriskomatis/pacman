@@ -4,14 +4,17 @@ using UnityEngine;
 public class NodePower : PowerUp
 {
     public GameEvent TransulentPlayer;
+    public GameEvent UnTranslucentPlayer;
     public override void Ability()
     {
+        OnPickUp();
         TransulentPlayer.Raise();
         StartCoroutine(DisableAbility());
     }
 
     protected override IEnumerator DisableAbility()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(abilityTimer);
+        UnTranslucentPlayer.Raise();
     }
 }
