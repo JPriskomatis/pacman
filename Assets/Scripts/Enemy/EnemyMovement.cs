@@ -23,6 +23,8 @@ public class EnemyMovement : MonoBehaviour
 
     float chaseChance = 0.8f;
 
+
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -131,6 +133,11 @@ public class EnemyMovement : MonoBehaviour
     public void StopMovement()
     {
         canMove = false;
+
+    }
+    public void EnableMovement()
+    {
+        canMove = true;
         enemy.SetDirection(currentDirection, false);
 
     }

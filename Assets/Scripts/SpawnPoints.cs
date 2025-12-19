@@ -22,7 +22,6 @@ public class SpawnPoints : MonoBehaviour
 
                 Vector3 worldPos = groundTilemap.GetCellCenterWorld(cell);
                 Instantiate(pointPrefab, worldPos, Quaternion.identity);
-                Debug.Log(xx++);
             }
         }
 

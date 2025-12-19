@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -16,13 +17,17 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
 
     [SerializeField] private Animator anim;
-
-
-    public GameEvent StopGhostMovenet;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private SpriteRenderer runningShoes;
 
     Vector3 pos;
+
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+
+    private Vector2 shootDirection = Vector2.right; // Stored shooting direction
+
+    public GameEvent StopGhostMovenet;
 
     private void Start()
     {
@@ -41,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
             Move();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
     }
 
     void HandleInput()
@@ -50,18 +59,15 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 dir = new Vector2(horizontal, vertical);
 
-        
+        // Prioritize horizontal movement
         if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
         {
             dir.y = 0;
         }
-
         else
         {
             dir.x = 0;
-
         }
-            
 
         if (dir != Vector2.zero)
             nextInput = dir;
@@ -79,54 +85,49 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                // If blocked, try current input
                 nextCell = wallsTilemap.WorldToCell(transform.position + (Vector3)input);
                 if (IsWall(nextCell))
                 {
                     input = Vector2.zero;
                     anim.SetTrigger("Stop");
                 }
-
             }
 
             if (input.x != 0)
             {
-                Vector3 pos = runningShoes.transform.localPosition;
-
-                float xOffset = 0.324f;
-
-                // Flip sprites
+                // Flip sprites horizontally
                 bool facingLeft = input.x < 0;
                 sprite.flipX = facingLeft;
                 runningShoes.flipX = facingLeft;
 
-                // Put the shoes on the opposite side of the flip
-                pos.x = facingLeft ? xOffset : -xOffset; // notice the swapped signs
+                // Adjust running shoes position
+                float xOffset = 0.324f;
+                pos.x = facingLeft ? xOffset : -xOffset;
                 runningShoes.transform.localPosition = pos;
 
                 transform.rotation = Quaternion.identity;
             }
-
             else if (input.y > 0)
             {
                 pos.x = -0.235f;
-                runningShoes.gameObject.transform.localPosition = pos;
-                // Moving up
+                runningShoes.transform.localPosition = pos;
                 sprite.flipX = false;
                 runningShoes.flipX = false;
-                transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                transform.rotation = Quaternion.Euler(0f, 0f, 90f); // Up
             }
             else if (input.y < 0)
             {
-                // Moving down
                 sprite.flipX = false;
                 runningShoes.flipX = false;
-                transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                transform.rotation = Quaternion.Euler(0f, 0f, -90f); // Down
             }
 
-            // Set target position to the **center of the next tile**
+            // Update shooting direction
             if (input != Vector2.zero)
             {
+                shootDirection = input.normalized;
+
+                // Set target position to the center of the next tile
                 Vector3Int targetCell = wallsTilemap.WorldToCell(transform.position + (Vector3)input);
                 targetPosition = wallsTilemap.GetCellCenterWorld(targetCell);
                 anim.SetTrigger("Move");
@@ -136,6 +137,28 @@ public class PlayerMovement : MonoBehaviour
         // Smoothly move toward target position
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
+
+    void Shoot()
+    {
+        if (projectilePrefab == null || firePoint == null) return;
+
+        // Instantiate projectile
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+
+        // Get Rigidbody2D
+        Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
+
+        // Move in the stored shoot direction
+        rb.linearVelocity = shootDirection.normalized * 10f;
+
+        // Rotate projectile to face the direction it is moving
+        float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+        proj.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        Destroy(proj, 3f);
+    }
+
+
 
     public void TeleportToCell(Vector3Int cell)
     {
@@ -150,22 +173,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerDeath()
     {
-        //Freeze Ghosts
         StopGhostMovenet.Raise();
-        //Freeze Players
         canMove = false;
-
         StartCoroutine(PlayerDeathAnimation());
-
-
     }
+
     IEnumerator PlayerDeathAnimation()
     {
         yield return new WaitForSeconds(1f);
-
-        //Play Death Animation
         anim.SetTrigger("Death");
-
         yield return new WaitForSeconds(3f);
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
@@ -180,5 +196,4 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = originalSpeed;
     }
-
 }

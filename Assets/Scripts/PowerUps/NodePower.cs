@@ -8,7 +8,6 @@ public class NodePower : PowerUp
     {
         
 
-        StartCoroutine(DisableAbility());
     }
 
     protected override IEnumerator DisableAbility()

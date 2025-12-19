@@ -23,6 +23,7 @@ public abstract class PowerUp : MonoBehaviour, Iinteractable
         OnPickUp();
         PowerUpEvent.Raise();
         Ability();
+        StartCoroutine(DisableAbility());
     }
 
     //private void Start()

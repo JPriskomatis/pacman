@@ -7,11 +7,9 @@ public class SveltePower : PowerUp
     public GameEvent ResetPlayerSpeed;
     public override void Ability()
     {
-        OnPickUp();
         //Makes player go faster;
         SpeedUpPlayer.Raise();
 
-        StartCoroutine(DisableAbility());
     }
 
     protected override IEnumerator DisableAbility()
