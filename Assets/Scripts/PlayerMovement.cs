@@ -29,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     public GameEvent StopGhostMovenet;
 
+    private bool canShoot = false;
+
+    [SerializeField] private FloatVariable numberOfBullets;
+    public GameEvent shootingBullet;
+    public GameEvent DisableShootingBullet;
+
     private void Start()
     {
         pos = runningShoes.gameObject.transform.localPosition;
@@ -46,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             Move();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (canShoot && Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
         }
@@ -138,24 +144,41 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
 
+    public void EnableShoot(bool allow)
+    {
+        canShoot = allow;
+    }
     void Shoot()
     {
-        if (projectilePrefab == null || firePoint == null) return;
+        if(numberOfBullets.value > 0)
+        {
+            if (projectilePrefab == null || firePoint == null) return;
 
-        // Instantiate projectile
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            // Instantiate projectile
+            GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
-        // Get Rigidbody2D
-        Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
+            // Get Rigidbody2D
+            Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
 
-        // Move in the stored shoot direction
-        rb.linearVelocity = shootDirection.normalized * 10f;
+            // Move in the stored shoot direction
+            rb.linearVelocity = shootDirection.normalized * 10f;
 
-        // Rotate projectile to face the direction it is moving
-        float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-        proj.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            // Rotate projectile to face the direction it is moving
+            float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+            proj.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        Destroy(proj, 3f);
+            Destroy(proj, 3f);
+            
+            numberOfBullets.value--;
+            shootingBullet.Raise();
+            if(numberOfBullets.value == 0)
+            {
+                DisableShootingBullet.Raise();
+                EnableShoot(false);
+            }
+        }
+       
+        
     }
 
 

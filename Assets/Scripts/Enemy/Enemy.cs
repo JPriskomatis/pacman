@@ -25,6 +25,9 @@ public class Enemy : MonoBehaviour, Iinteractable
     private bool passThroughPlayer;
 
     public GameEvent StartEnemySpawnTimer;
+
+    [SerializeField] private Collider2D enemyCollider;
+    [SerializeField] private EnemyMovement enemyMovement;
     void Start()
     {
         EnemyLogo();
@@ -86,7 +89,8 @@ public class Enemy : MonoBehaviour, Iinteractable
 
     public void Death()
     {
-        GetComponent<EnemyMovement>().StopMovement();
+        enemyCollider.enabled = false;
+        enemyMovement.StopMovement();
         //Flicker effect
         StartCoroutine(FlickerEffect());
 

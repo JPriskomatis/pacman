@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class AstroPower : PowerUp
 {
+    public GameEvent EnableShootProjectile;
+    [SerializeField] private FloatVariable numberOfBullets;
+    [SerializeField] private float addBullets = 3f;
     public override void Ability()
     {
+        numberOfBullets.value = addBullets;
+        EnableShootProjectile.Raise();
     }
 
     protected override IEnumerator DisableAbility()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(0f);
+        Destroy(gameObject);
     }
 }

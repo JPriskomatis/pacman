@@ -15,5 +15,14 @@ public class ShootProjectile : MonoBehaviour
         // Destroy after 3 seconds
         Destroy(gameObject, 3f);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<Enemy>().Death();
+            Destroy(gameObject);
+        }
+    }
 }
 
