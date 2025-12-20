@@ -8,10 +8,10 @@ public class Door : MonoBehaviour
     public Tile tile;
     [SerializeField] private Tilemap doorTilemap;
 
-    private void Start()
+    private IEnumerator Start()
     {
         //doorTilemap.SetColor(cell, Color.red);
-
+        yield return new WaitForSeconds(2f);
         DisableDoor();
   
         

@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
         titleIndex = 0;
     }
 
-    private string[] titles = { "Internship Position", "Junior Developer", "Mid-level Developer", "Senior Developer", "Lead Developer", "Principlap Engineer" };
+    private string[] titles = { "Internship Position", "Junior Developer", "Mid-level Developer", "Senior Developer", "Lead Developer", "Principal Engineer" };
 
     public void IncreaseScore(int scoreAmount)
     {

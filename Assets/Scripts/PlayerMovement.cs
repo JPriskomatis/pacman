@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using static Unity.VisualScripting.Member;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,6 +36,18 @@ public class PlayerMovement : MonoBehaviour
     public GameEvent shootingBullet;
     public GameEvent DisableShootingBullet;
 
+    [SerializeField] private int numberOfTeleportDistance = 4;
+    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip teleport, error;
+
+    [SerializeField] private bool canTeleport;
+    [SerializeField] private FloatVariable teleportCharges;
+    public GameEvent CannotTeleport;
+    public GameEvent Teleporting;
+
+    [SerializeField] private GameObject teleportVFX;
+
+    [SerializeField] private AudioClip clip;
     private void Start()
     {
         pos = runningShoes.gameObject.transform.localPosition;
@@ -50,6 +63,11 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleInput();
             Move();
+
+            if (Input.GetKeyDown(KeyCode.Space) && canTeleport)
+            {
+                TryTeleportForward(numberOfTeleportDistance);
+            }
         }
 
         if (canShoot && Input.GetKeyDown(KeyCode.Space))
@@ -57,6 +75,50 @@ public class PlayerMovement : MonoBehaviour
             Shoot();
         }
     }
+    
+    public void EnableTeleport(bool allow)
+    {
+        canTeleport = allow;
+    }
+
+    bool IsCellBlocked(Vector3Int cell)
+    {
+        // Outside tilemap = blocked
+        if (!wallsTilemap.cellBounds.Contains(cell))
+            return true;
+
+        // Wall tile = blocked
+        return wallsTilemap.HasTile(cell);
+    }
+
+    void TryTeleportForward(int cells)
+    {
+        Vector3Int currentCell = wallsTilemap.WorldToCell(transform.position);
+
+        // Use current movement direction OR last facing direction
+        Vector2 dir = input != Vector2.zero ? input : shootDirection;
+
+        Vector3Int direction = new Vector3Int(
+            Mathf.RoundToInt(dir.x),
+            Mathf.RoundToInt(dir.y),
+            0
+        );
+
+        Vector3Int destinationCell = currentCell + direction * cells;
+
+        if (IsCellBlocked(destinationCell))
+        {
+            source.clip = error;
+            source.Play();
+            return;
+        }
+
+        source.clip = teleport;
+        source.Play();
+        TeleportToCell(destinationCell);
+    }
+
+
 
     void HandleInput()
     {
@@ -182,11 +244,27 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+    IEnumerator TeleportAnimation()
+    {
+        teleportVFX.SetActive(true);
+        teleportVFX.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        teleportVFX.SetActive(false);
+    }
     public void TeleportToCell(Vector3Int cell)
     {
+        StartCoroutine(TeleportAnimation());
+        
+
+        teleportCharges.value--;
         targetPosition = wallsTilemap.GetCellCenterWorld(cell);
         transform.position = targetPosition;
+        Teleporting.Raise();
+
+        if (teleportCharges.value == 0)
+        {
+            CannotTeleport.Raise();
+        }
     }
 
     bool IsWall(Vector3Int cell)
@@ -196,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerDeath()
     {
+        AudioManager.instance.PlayAudioInstance(clip);
         StopGhostMovenet.Raise();
         canMove = false;
         StartCoroutine(PlayerDeathAnimation());

@@ -141,3 +141,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Point
   CollectPoint: {fileID: 11400000, guid: 20a57372f14fe8f428b3c24da85155ec, type: 2}
+  IncreaseTitle: {fileID: 0}
+  clip: {fileID: 8300000, guid: ff93ef9c3fef5614a86c0cf58e0d3531, type: 3}
