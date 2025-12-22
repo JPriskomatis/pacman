@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (canShoot && Input.GetKeyDown(KeyCode.Space))
+        if (canShoot && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
         }
