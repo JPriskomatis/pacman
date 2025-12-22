@@ -210,6 +210,7 @@ MonoBehaviour:
   StartEnemySpawnTimer: {fileID: 11400000, guid: 013c5b43bf6652149814f824c27115f3, type: 2}
   enemyCollider: {fileID: 8712333812692610359}
   enemyMovement: {fileID: 2036709943637298445}
+  clip: {fileID: 8300000, guid: 92c703baf867e2641a4d9a9c4b432d5f, type: 3}
 --- !u!114 &-1594817456391264873
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,11 +15,12 @@ public abstract class PowerUp : MonoBehaviour, Iinteractable
     
 
     [SerializeField] protected float abilityTimer;
+    [SerializeField] AudioSource source;
 
     public void Interact()
     {
         //Destroy(gameObject);
-        
+        source.Play();
         OnPickUp();
         PowerUpEvent.Raise();
         Ability();

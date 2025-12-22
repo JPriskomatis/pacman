@@ -243,7 +243,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b6fc7905c75c55246aab9bba1949e509, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -795,7 +795,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.35
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11020,6 +11020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReactPower
   PowerUpEvent: {fileID: 11400000, guid: e9a6358ffd1affe47ab06aefc7132890, type: 2}
   abilityTimer: 0
+  source: {fileID: 1684637345}
 --- !u!1001 &951274270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11194,6 +11195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SveltePower
   PowerUpEvent: {fileID: 11400000, guid: e9a6358ffd1affe47ab06aefc7132890, type: 2}
   abilityTimer: 5
+  source: {fileID: 1684637345}
   SpeedUpPlayer: {fileID: 11400000, guid: e30e3effa33485d46af5dfb735c47cc0, type: 2}
   ResetPlayerSpeed: {fileID: 11400000, guid: f685dc2f34c1bf645867977a218a87e6, type: 2}
 --- !u!1 &1084560204
@@ -16773,6 +16775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopifyPower
   PowerUpEvent: {fileID: 11400000, guid: e9a6358ffd1affe47ab06aefc7132890, type: 2}
   abilityTimer: 6
+  source: {fileID: 1684637345}
   basketCase: {fileID: 2567289788512715644, guid: f814755ddc719c143b26480eab192799, type: 3}
 --- !u!1 &1684637343
 GameObject:
@@ -16783,6 +16786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684637344}
+  - component: {fileID: 1684637345}
   m_Layer: 0
   m_Name: ----------PowerUps----------
   m_TagString: Untagged
@@ -16810,6 +16814,103 @@ Transform:
   - {fileID: 642546479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1684637345
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684637343}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 7faaa03e00d741e40942469fc3ffd966, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1715535164
 GameObject:
   m_ObjectHideFlags: 0
@@ -16911,6 +17012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AstroPower
   PowerUpEvent: {fileID: 11400000, guid: e9a6358ffd1affe47ab06aefc7132890, type: 2}
   abilityTimer: 0
+  source: {fileID: 1684637345}
   EnableShootProjectile: {fileID: 11400000, guid: f7df647913ce8b94a895993eee0732b1, type: 2}
   numberOfBullets: {fileID: 11400000, guid: 24a14ec458884a147a20927758c6ee17, type: 2}
   addBullets: 3
@@ -17032,6 +17134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NodePower
   PowerUpEvent: {fileID: 11400000, guid: e9a6358ffd1affe47ab06aefc7132890, type: 2}
   abilityTimer: 5
+  source: {fileID: 1684637345}
   CanTeleport: {fileID: 11400000, guid: 3fdc0f4a386700c44871a88f61e1dc44, type: 2}
   teleportCharges: {fileID: 11400000, guid: 3e8d229d940cbf541a177922bf0e5a6d, type: 2}
   setTeleportCharges: 3

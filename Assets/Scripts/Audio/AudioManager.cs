@@ -21,9 +21,11 @@ public class AudioManager : MonoBehaviour
         themesong.Stop();
     }
 
-    public void PlayAudioInstance(AudioClip clip)
+    public void PlayAudioInstance(AudioClip clip, float volume = 0.1f)
     {
         audioSource.clip = clip;
+        audioSource.volume = volume;
         audioSource.Play();
     }
+
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Enemy : MonoBehaviour, Iinteractable
 {
@@ -28,6 +29,8 @@ public class Enemy : MonoBehaviour, Iinteractable
 
     [SerializeField] private Collider2D enemyCollider;
     [SerializeField] private EnemyMovement enemyMovement;
+
+    [SerializeField] private AudioClip clip;
     void Start()
     {
         EnemyLogo();
@@ -89,6 +92,7 @@ public class Enemy : MonoBehaviour, Iinteractable
 
     public void Death()
     {
+        AudioManager.instance.PlayAudioInstance(clip, 0.4f);
         enemyCollider.enabled = false;
         enemyMovement.StopMovement();
         //Flicker effect
