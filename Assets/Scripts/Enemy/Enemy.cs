@@ -133,19 +133,36 @@ public class Enemy : MonoBehaviour, Iinteractable
         animIndex = 0;
         float timer = 0f;
         float duration = 5f;
+        float flickerStartTime = 3.5f; // start flickering after 3.5 seconds
+        float flickerInterval = 0.2f;  // flicker speed
+
         while (timer < duration)
         {
-            // animate afraid frames every Update via SetDirection
             SetDirection(lastDirection, true);
+
+            // Start flickering in the last portion
+            if (timer >= flickerStartTime)
+            {
+                float alpha = Mathf.PingPong((timer - flickerStartTime) / flickerInterval, 1f);
+                image.color = new Color(1f, 1f, 1f, alpha); // white flicker effect
+            }
+            else
+            {
+                image.color = Color.white; // ensure normal color before flicker
+            }
+
             timer += Time.deltaTime;
             yield return null;
         }
 
+        // End scared state
         isAfraid = false;
         animIndex = 0;
         image.sprite = GetSprite(lastDirection, animIndex);
+        image.color = Color.white; // reset color
         NoLongerScared.Raise();
     }
+
 
     public void AllowPassthrough(bool allow)
     {
