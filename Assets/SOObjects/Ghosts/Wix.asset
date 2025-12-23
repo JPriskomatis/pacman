@@ -27,3 +27,6 @@ MonoBehaviour:
   afraid:
   - {fileID: 8405985795958728959, guid: bea1f1fb50014c542a338ebed91e1346, type: 3}
   - {fileID: 7408656860028139720, guid: 51d59d58481b63145ad75df6409f3b61, type: 3}
+  afraidEnd:
+  - {fileID: 5871385243302060119, guid: 46ac7be18f648b04191f256953e56275, type: 3}
+  - {fileID: -7206636193665201314, guid: 9176cc7cb0daea940b01be369829fe00, type: 3}

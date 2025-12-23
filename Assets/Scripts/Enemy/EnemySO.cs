@@ -10,4 +10,5 @@ public class EnemySO : ScriptableObject
     public Sprite[] right;
 
     public Sprite[] afraid;
+    public Sprite[] afraidEnd;
 }

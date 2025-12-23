@@ -8,8 +8,14 @@ public class Enemy : MonoBehaviour, Iinteractable
     [SerializeField] private EnemySO[] enemySO;
     private static int enemyIndex;
     private EnemySO currentEnemySO;
+
     [SerializeField] private SpriteRenderer image;
     [SerializeField] private Sprite originalImage;
+    private bool isScaredEnding;
+
+    private bool isDead;
+    private Coroutine scaredCoroutine;
+
 
     public GameEvent EnemyDeath;
 
@@ -78,8 +84,11 @@ public class Enemy : MonoBehaviour, Iinteractable
     {
         if (isAfraid)
         {
-            
-            return currentEnemySO.afraid[index % currentEnemySO.afraid.Length];
+            Sprite[] sprites = isScaredEnding
+                ? currentEnemySO.afraidEnd
+                : currentEnemySO.afraid;
+
+            return sprites[index % sprites.Length];
         }
 
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
@@ -90,16 +99,28 @@ public class Enemy : MonoBehaviour, Iinteractable
 
 
 
+
     public void Death()
     {
+        if (isDead)
+            return;
+
+        isDead = true;
+
+        // Stop scared logic immediately
+        if (scaredCoroutine != null)
+            StopCoroutine(scaredCoroutine);
+
+        isAfraid = false;
+        isScaredEnding = false;
+
         AudioManager.instance.PlayAudioInstance(clip, 0.4f);
         enemyCollider.enabled = false;
         enemyMovement.StopMovement();
-        //Flicker effect
+
         StartCoroutine(FlickerEffect());
-
-
     }
+
 
     IEnumerator FlickerEffect()
     {
@@ -128,44 +149,60 @@ public class Enemy : MonoBehaviour, Iinteractable
 
     public void GetScared()
     {
-        StartCoroutine(ScaredGhost());
+        if (isDead)
+            return;
+
+        if (scaredCoroutine != null)
+            StopCoroutine(scaredCoroutine);
+
+        scaredCoroutine = StartCoroutine(ScaredGhost());
     }
 
     IEnumerator ScaredGhost()
     {
         isAfraid = true;
+        isScaredEnding = false;
         animIndex = 0;
+
         float timer = 0f;
         float duration = 5f;
-        float flickerStartTime = 3.5f; // start flickering after 3.5 seconds
-        float flickerInterval = 0.2f;  // flicker speed
+        float flickerStartTime = 3.5f;
+        float flickerInterval = 0.2f;
+        float flickerTimer = 0f;
 
         while (timer < duration)
         {
+            if (isDead)
+                yield break;
+
             SetDirection(lastDirection, true);
 
-            // Start flickering in the last portion
             if (timer >= flickerStartTime)
             {
-                float alpha = Mathf.PingPong((timer - flickerStartTime) / flickerInterval, 1f);
-                image.color = new Color(1f, 1f, 1f, alpha); // white flicker effect
-            }
-            else
-            {
-                image.color = Color.white; // ensure normal color before flicker
+                flickerTimer += Time.deltaTime;
+                if (flickerTimer >= flickerInterval)
+                {
+                    flickerTimer = 0f;
+                    isScaredEnding = !isScaredEnding;
+                }
             }
 
             timer += Time.deltaTime;
             yield return null;
         }
 
-        // End scared state
+        if (isDead)
+            yield break;
+
         isAfraid = false;
+        isScaredEnding = false;
         animIndex = 0;
         image.sprite = GetSprite(lastDirection, animIndex);
-        image.color = Color.white; // reset color
+
         NoLongerScared.Raise();
     }
+
+
 
 
     public void AllowPassthrough(bool allow)
