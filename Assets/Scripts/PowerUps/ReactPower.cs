@@ -4,9 +4,11 @@ using UnityEngine;
 public class ReactPower : PowerUp
 {
     [SerializeField] GameObject bomb;
+    private int countdown = 3;
+
     public override void Ability()
     {
-        StartCoroutine(DropBomb());
+        StartCoroutine(StartCountdown());
     }
 
     protected override IEnumerator DisableAbility()
@@ -14,11 +16,24 @@ public class ReactPower : PowerUp
         throw new System.NotImplementedException();
     }
 
-    IEnumerator DropBomb()
+    private void DropBomb()
     {
-        yield return new WaitForSeconds(3f);
+        
         Debug.Log("Dropping bomb...");
         bomb.SetActive(true);
 
+    }
+
+    IEnumerator StartCountdown()
+    {
+        while (countdown > 0)
+        {
+            DisplayControllerText.Instance.SetDisplayText(countdown.ToString());
+            yield return new WaitForSeconds(1f);
+            countdown--;
+        }
+
+        Debug.Log("Boom");
+        DropBomb();
     }
 }
