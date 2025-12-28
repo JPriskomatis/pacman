@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject teleportVFX;
 
     [SerializeField] private AudioClip clip;
+
+    public GameEvent ShowEndScreen;
     private void Start()
     {
         pos = runningShoes.gameObject.transform.localPosition;
@@ -285,8 +287,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         anim.SetTrigger("Death");
         yield return new WaitForSeconds(3f);
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+
+        ShowEndScreen.Raise();
+
     }
 
     public void SpeedUpPlayer(int x)

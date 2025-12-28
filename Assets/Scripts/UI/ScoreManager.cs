@@ -39,4 +39,13 @@ public class ScoreManager : MonoBehaviour
         scoreTitle.text = titles[titleIndex];
         titleIndex++;
     }
+
+    public int GetScore()
+    {
+        return points;
+    }
+    public string GetTitle()
+    {
+        return scoreTitle.text;
+    }
  }
