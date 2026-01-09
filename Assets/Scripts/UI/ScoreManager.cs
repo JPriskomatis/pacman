@@ -8,24 +8,24 @@ public class ScoreManager : MonoBehaviour
 
     private int titleIndex;
 
-    private int points;
+    [SerializeField] private FloatVariable points;
 
     private int titleCap = 25;
 
     private void Start()
     {
-        points = 0;
+        points.value = 0;
         titleIndex = 0;
     }
 
     private string[] titles = { "Internship Position", "Junior Developer", "Mid-level Developer", "Senior Developer", "Lead Developer", "Principal Engineer" };
 
-    public void IncreaseScore(int scoreAmount)
+    public void IncreaseScore(float scoreAmount)
     {
-        points += scoreAmount;
-        scorePoints.text = points.ToString();
+        points.value += scoreAmount;
+        scorePoints.text = points.value.ToString();
 
-        if( points > titleCap)
+        if(points.value > titleCap)
         {
             ChangeScoreTitle();
             titleCap += 40;
@@ -40,9 +40,9 @@ public class ScoreManager : MonoBehaviour
         titleIndex++;
     }
 
-    public int GetScore()
+    public float GetScore()
     {
-        return points;
+        return points.value;
     }
     public string GetTitle()
     {

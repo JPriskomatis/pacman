@@ -10,12 +10,14 @@ public class EndScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleNumber;
     [SerializeField] ScoreManager scoreManager;
 
+
+
     private void OnEnable()
     {
         SetScoreNumber(scoreManager.GetScore());
         SetTitle(scoreManager.GetTitle());
     }
-    public void SetScoreNumber(int score)
+    public void SetScoreNumber(float score)
     {
         scoreNumber.text = score.ToString();
         
