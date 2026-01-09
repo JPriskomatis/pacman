@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692a9cb86625d594f9dd0cae809f3419, type: 3}
   m_Name: AstroPowerup
   m_EditorClassIdentifier: Assembly-CSharp::StringVariable
-  value: Left Click to Shoot
-  originalValue: Left Click to Shoot
+  value: Press Q to Shoot
+  originalValue: Press Q to Shoot

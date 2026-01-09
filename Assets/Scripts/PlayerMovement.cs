@@ -50,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip clip;
 
     public GameEvent ShowEndScreen;
+
+    private Vector2 touchStartPos;
+    private bool isTouching;
+    [SerializeField] private float minSwipeDistance = 50f;
+
+
     private void Start()
     {
         pos = runningShoes.gameObject.transform.localPosition;
@@ -72,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (canShoot && Input.GetKeyDown(KeyCode.Mouse0))
+        if (canShoot && Input.GetKeyDown(KeyCode.Q))
         {
             Shoot();
         }
@@ -124,24 +130,85 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleInput()
     {
+        Vector2 dir = Vector2.zero;
+
+        // Keyboard always works
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector2 dir = new Vector2(horizontal, vertical);
-
-        // Prioritize horizontal movement
         if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+            dir = new Vector2(horizontal, 0);
+        else if (Mathf.Abs(vertical) > 0)
+            dir = new Vector2(0, vertical);
+
+        // Touch / Mouse swipe
+        if (TryGetSwipeDirection(out Vector2 swipeDir))
         {
-            dir.y = 0;
-        }
-        else
-        {
-            dir.x = 0;
+            dir = swipeDir;
         }
 
         if (dir != Vector2.zero)
             nextInput = dir;
     }
+
+
+
+    bool TryGetSwipeDirection(out Vector2 dir)
+    {
+        dir = Vector2.zero;
+
+        // TOUCH (Mobile)
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStartPos = touch.position;
+                isTouching = true;
+            }
+            else if (touch.phase == TouchPhase.Ended && isTouching)
+            {
+                Vector2 delta = touch.position - touchStartPos;
+                isTouching = false;
+
+                if (delta.magnitude >= minSwipeDistance)
+                {
+                    dir = Mathf.Abs(delta.x) > Mathf.Abs(delta.y)
+                        ? (delta.x > 0 ? Vector2.right : Vector2.left)
+                        : (delta.y > 0 ? Vector2.up : Vector2.down);
+
+                    return true;
+                }
+            }
+        }
+        // MOUSE (Editor / WebGL Desktop)
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                touchStartPos = Input.mousePosition;
+                isTouching = true;
+            }
+            else if (Input.GetMouseButtonUp(0) && isTouching)
+            {
+                Vector2 delta = (Vector2)Input.mousePosition - touchStartPos;
+                isTouching = false;
+
+                if (delta.magnitude >= minSwipeDistance)
+                {
+                    dir = Mathf.Abs(delta.x) > Mathf.Abs(delta.y)
+                        ? (delta.x > 0 ? Vector2.right : Vector2.left)
+                        : (delta.y > 0 ? Vector2.up : Vector2.down);
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     void Move()
     {
