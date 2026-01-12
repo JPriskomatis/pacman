@@ -12,20 +12,39 @@ public class ScoreManager : MonoBehaviour
 
     private int titleCap = 25;
 
-    private void Start()
-    {
-        points.value = 0;
-        titleIndex = 0;
-    }
+    //private void Start()
+    //{
+    //    points.value = 0;
+    //    titleIndex = 0;
+    //}
 
     private string[] titles = { "Internship Position", "Junior Developer", "Mid-level Developer", "Senior Developer", "Lead Developer", "Principal Engineer" };
 
-    public void IncreaseScore(float scoreAmount)
+    public void IncreaseScore()
     {
-        points.value += scoreAmount;
+        points.value += 1;
+        
         scorePoints.text = points.value.ToString();
 
         if(points.value > titleCap)
+        {
+            ChangeScoreTitle();
+            titleCap += 40;
+        }
+    }
+
+    public void SetScore(float score)
+    {
+        scorePoints.text = score.ToString();
+        Debug.Log("Setting score...");
+    }
+
+    public void IncreaseScoreOnKill()
+    {
+        points.value += 10;
+        scorePoints.text = points.value.ToString();
+
+        if (points.value > titleCap)
         {
             ChangeScoreTitle();
             titleCap += 40;

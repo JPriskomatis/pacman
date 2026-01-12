@@ -145,4 +145,4 @@ MonoBehaviour:
   IncreaseTitle: {fileID: 0}
   clip: {fileID: 8300000, guid: ff93ef9c3fef5614a86c0cf58e0d3531, type: 3}
   pointScore: {fileID: 11400000, guid: 7bdd07e23a5db384eb3a849e6a008fda, type: 2}
-  RestartLevel: {fileID: 11400000, guid: 6005091050c5b804a85ad1e538ebbf5d, type: 2}
+  WinLevel: {fileID: 11400000, guid: 7e9167d8e21d7954a8b65fb831927d72, type: 2}

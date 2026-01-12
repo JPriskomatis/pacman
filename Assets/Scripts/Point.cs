@@ -9,20 +9,19 @@ public class Point : MonoBehaviour, Iinteractable
 
     [SerializeField] FloatVariable pointScore;
 
-    public GameEvent RestartLevel;
+    public GameEvent WinLevel;
 
     int currentPoints = 0;
     public void Interact()
     {
         AudioManager.instance.PlayAudioInstance(clip);
         CollectPoint.Raise();
-        pointScore.value++;
 
         currentPoints++;
         if(currentPoints == 225)
         {
             Debug.Log("End Game");
-            RestartLevel.Raise();
+            WinLevel.Raise();
         }
 
         Destroy(gameObject);

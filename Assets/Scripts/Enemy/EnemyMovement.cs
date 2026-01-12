@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
 
     public Transform player;
 
-    float chaseChance = 0.65f;
+    public static float chaseChance = 0.60f;
 
 
 

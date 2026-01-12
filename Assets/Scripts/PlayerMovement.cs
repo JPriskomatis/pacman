@@ -226,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
                 if (IsWall(nextCell))
                 {
                     input = Vector2.zero;
-                    anim.SetTrigger("Stop");
+                    //anim.SetTrigger("Stop");
                 }
             }
 
@@ -267,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
                 // Set target position to the center of the next tile
                 Vector3Int targetCell = wallsTilemap.WorldToCell(transform.position + (Vector3)input);
                 targetPosition = wallsTilemap.GetCellCenterWorld(targetCell);
-                anim.SetTrigger("Move");
+                //anim.SetTrigger("Move");
             }
         }
 

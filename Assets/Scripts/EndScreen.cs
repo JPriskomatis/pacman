@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class EndScreen : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class EndScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleNumber;
     [SerializeField] ScoreManager scoreManager;
 
+    public FloatVariable finalScore;
 
 
     private void OnEnable()
@@ -28,7 +28,24 @@ public class EndScreen : MonoBehaviour
     }
     public void RestartLevel()
     {
+        finalScore.value = 0;
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+
+    }
+
+    public void WinLevelRestart()
+    {
+
+        //Increase the chase chance by 20%
+        EnemyMovement.chaseChance += 0.20f;
+        FloatVariable.savedValue = scoreManager.GetScore();
+
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+
+        scoreManager.SetScore(FloatVariable.savedValue);
+
+
     }
 }

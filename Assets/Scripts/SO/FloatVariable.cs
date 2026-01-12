@@ -5,6 +5,7 @@ public class FloatVariable : ScriptableObject
 {
     public float value;
     public float originalValue;
+    public static float savedValue;
 
     private void OnEnable()
     {
