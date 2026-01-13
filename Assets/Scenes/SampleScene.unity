@@ -12896,7 +12896,11 @@ MonoBehaviour:
   currentSprite: {fileID: 1600370066}
   muteSprite: {fileID: 21300000, guid: ce9abd258743e014b94ef358ddfcde06, type: 3}
   unmuteSprite: {fileID: 21300000, guid: 15f3e3534cc5b924b8103e645b0da935, type: 3}
-  audioListener: {fileID: 519420029}
+  sources:
+  - {fileID: 1684637345}
+  - {fileID: 125537443}
+  - {fileID: 262754365}
+  - {fileID: 2047667829}
 --- !u!1 &1209584670
 GameObject:
   m_ObjectHideFlags: 0

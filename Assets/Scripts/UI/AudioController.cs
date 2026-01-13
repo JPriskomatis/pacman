@@ -7,7 +7,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Image currentSprite;
     [SerializeField] private Sprite muteSprite, unmuteSprite;
 
-    [SerializeField] private AudioListener audioListener;
+    [SerializeField] private AudioSource[] sources;
 
     public void SetAudio()
     {
@@ -15,12 +15,18 @@ public class AudioController : MonoBehaviour
         if (isMute)
         {
             currentSprite.sprite = muteSprite;
-            audioListener.enabled = false;
+            foreach (var source in sources)
+            {
+                source.mute = true;
+            }
         }
         else
         {
             currentSprite.sprite = unmuteSprite;
-            audioListener.enabled = true;
+            foreach (var source in sources)
+            {
+                source.mute = false;
+            }
         }
     }
 }
