@@ -5,6 +5,8 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     private bool isPause = false;
 
+    
+
     public void StartPause()
     {
         isPause = !isPause;

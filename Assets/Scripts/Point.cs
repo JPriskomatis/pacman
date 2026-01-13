@@ -11,14 +11,14 @@ public class Point : MonoBehaviour, Iinteractable
 
     public GameEvent WinLevel;
 
-    int currentPoints = 0;
+    [SerializeField] private IntVariable currentPoints;
     public void Interact()
     {
         AudioManager.instance.PlayAudioInstance(clip);
         CollectPoint.Raise();
 
-        currentPoints++;
-        if(currentPoints == 225)
+        currentPoints.value++;
+        if(currentPoints.value == 205)
         {
             Debug.Log("End Game");
             WinLevel.Raise();
