@@ -13354,6 +13354,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 255237805}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1255397028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13726,6 +13738,7 @@ MonoBehaviour:
   scorePoints: {fileID: 659853413}
   scoreTitle: {fileID: 435549281}
   points: {fileID: 11400000, guid: 7bdd07e23a5db384eb3a849e6a008fda, type: 2}
+  title: {fileID: 11400000, guid: 8b61530092e4096408210a9725f676c6, type: 2}
 --- !u!114 &1304397414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13850,6 +13863,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 255237805}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &1336579414
 GameObject:

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     private int titleIndex;
 
     [SerializeField] private FloatVariable points;
+    [SerializeField] private StringVariable title;
 
     private int titleCap = 25;
 
@@ -46,6 +48,10 @@ public class ScoreManager : MonoBehaviour
     }
 
 
+    public void SetTitle(string title)
+    {
+        scoreTitle.text = title;
+    }
 
     public void IncreaseScoreOnKill()
     {
@@ -65,6 +71,7 @@ public class ScoreManager : MonoBehaviour
 
         scoreTitle.text = titles[titleIndex];
         titleIndex++;
+        title.value = scoreTitle.text;
     }
 
     public float GetScore()

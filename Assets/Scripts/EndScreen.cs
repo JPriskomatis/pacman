@@ -40,11 +40,13 @@ public class EndScreen : MonoBehaviour
         //Increase the chase chance by 20%
         EnemyMovement.chaseChance += 0.20f;
         FloatVariable.savedValue = scoreManager.GetScore();
+        StringVariable.savedValue = scoreManager.GetTitle();
 
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
 
         scoreManager.SetScore(FloatVariable.savedValue);
+        //scoreManager.SetTitle(StringVariable.savedValue);
 
 
     }
