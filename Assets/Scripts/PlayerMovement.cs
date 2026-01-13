@@ -82,13 +82,13 @@ public class PlayerMovement : MonoBehaviour
             HandleInput();
             Move();
 
-            if (Input.GetKeyDown(KeyCode.Space) && canTeleport)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 TryTeleportForward(numberOfTeleportDistance);
             }
         }
 
-        if (canShoot && Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Shoot();
         }
@@ -109,31 +109,35 @@ public class PlayerMovement : MonoBehaviour
         return wallsTilemap.HasTile(cell);
     }
 
-    void TryTeleportForward(int cells)
+    public void TryTeleportForward(int cells)
     {
-        Vector3Int currentCell = wallsTilemap.WorldToCell(transform.position);
-
-        // Use current movement direction OR last facing direction
-        Vector2 dir = input != Vector2.zero ? input : shootDirection;
-
-        Vector3Int direction = new Vector3Int(
-            Mathf.RoundToInt(dir.x),
-            Mathf.RoundToInt(dir.y),
-            0
-        );
-
-        Vector3Int destinationCell = currentCell + direction * cells;
-
-        if (IsCellBlocked(destinationCell))
+        if (canTeleport)
         {
-            source.clip = error;
-            source.Play();
-            return;
-        }
+            Vector3Int currentCell = wallsTilemap.WorldToCell(transform.position);
 
-        source.clip = teleport;
-        source.Play();
-        TeleportToCell(destinationCell);
+            // Use current movement direction OR last facing direction
+            Vector2 dir = input != Vector2.zero ? input : shootDirection;
+
+            Vector3Int direction = new Vector3Int(
+                Mathf.RoundToInt(dir.x),
+                Mathf.RoundToInt(dir.y),
+                0
+            );
+
+            Vector3Int destinationCell = currentCell + direction * cells;
+
+            if (IsCellBlocked(destinationCell))
+            {
+                source.clip = error;
+                source.Play();
+                return;
+            }
+
+            source.clip = teleport;
+            source.Play();
+            TeleportToCell(destinationCell);
+        }
+        
     }
 
 
@@ -289,22 +293,22 @@ public class PlayerMovement : MonoBehaviour
     {
         canShoot = allow;
     }
-    void Shoot()
+    public void Shoot()
     {
-        if(numberOfBullets.value > 0)
+        if( canShoot && numberOfBullets.value > 0)
         {
             if (projectilePrefab == null || firePoint == null) return;
 
-            // Instantiate projectile
+            
             GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
-            // Get Rigidbody2D
+            
             Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
 
-            // Move in the stored shoot direction
+            
             rb.linearVelocity = shootDirection.normalized * 10f;
 
-            // Rotate projectile to face the direction it is moving
+            
             float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
             proj.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
