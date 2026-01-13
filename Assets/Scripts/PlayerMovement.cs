@@ -58,11 +58,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+
+        //PauseGame for 5 seconds
+        Time.timeScale = 0f;
+        StartCoroutine(StartCountdown());
         pos = runningShoes.gameObject.transform.localPosition;
         // Snap player to the center of the current tile
         targetPosition = wallsTilemap.GetCellCenterWorld(wallsTilemap.WorldToCell(transform.position));
         transform.position = targetPosition;
         originalSpeed = moveSpeed;
+    }
+
+    IEnumerator StartCountdown()
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        Time.timeScale = 1f;
     }
 
     private void Update()
