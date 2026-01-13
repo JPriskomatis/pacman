@@ -41,7 +41,7 @@ public class ReactPower : PowerUp
 
             prefab.transform.position = new Vector3(player.position.x, player.position.y + 2f, 0);
             prefab.GetComponentInChildren<TextMesh>().text = count.ToString();
-            DisplayControllerText.Instance.SetDisplayText(countdown.ToString());
+            //DisplayControllerText.Instance.SetDisplayText(countdown.ToString());
             yield return new WaitForSeconds(1f);
             count--;
             countdown--;

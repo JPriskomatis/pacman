@@ -36,8 +36,16 @@ public class ScoreManager : MonoBehaviour
     public void SetScore(float score)
     {
         scorePoints.text = score.ToString();
-        Debug.Log("Setting score...");
+
+        int titleIndex = (int)score / 40;
+
+        // Clamp to prevent out-of-range errors
+        titleIndex = Mathf.Clamp(titleIndex, 0, titles.Length - 1);
+
+        scoreTitle.text = titles[titleIndex];
     }
+
+
 
     public void IncreaseScoreOnKill()
     {
