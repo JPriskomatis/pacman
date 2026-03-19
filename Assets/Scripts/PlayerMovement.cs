@@ -268,8 +268,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (input.y < 0)
             {
+                pos.x = -0.235f; // adjust if needed
+                runningShoes.transform.localPosition = pos;
+
                 sprite.flipX = false;
                 runningShoes.flipX = false;
+
                 transform.rotation = Quaternion.Euler(0f, 0f, -90f); // Down
             }
 
